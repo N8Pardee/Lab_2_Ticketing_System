@@ -79,6 +79,7 @@ public:
 
 	}
 
+
 	//checks the size of the queue by iterating through the queue until it hits null pointer
 	int getSize()
 	{
@@ -86,6 +87,7 @@ public:
 
 		Node<T>* current = front;
 
+		//adds 1 to the size for each node in the queue
 		while (current != nullptr)
 		{
 			size++;
@@ -97,26 +99,26 @@ public:
 	}
 
 
-	//checks if the queue is empty by seeing if the front and back node are == to null pointer
-	bool isEmpty()
-	{
-		bool empty = true;
+	////checks if the queue is empty by seeing if the front and back node are == to null pointer
+	//bool isEmpty()
+	//{
+	//	bool empty = true;
 
-		if (front == nullptr && back == nullptr)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+	//	if (front == nullptr && back == nullptr)
+	//	{
+	//		return true;
+	//	}
+	//	else
+	//	{
+	//		return false;
+	//	}
+	//}
 
-	//peeks at the node in the front of the queue
-	void peek()
-	{
-		cout << this->front;
-	}
+	////peeks at the node in the front of the queue
+	//void peek()
+	//{
+	//	cout << this->front;
+	//}
 };
 
 

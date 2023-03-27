@@ -17,7 +17,7 @@ private:
 
 	Queue <string> queue;
 	 int sampleSize = 0;
-	 vector <string> sample_names;
+	vector <string> sample_names;
 	vector <string> sample_reasons;
 
 public:
@@ -25,7 +25,7 @@ public:
 	//calls load_names and load_reasons from text files into samples and sample reasons
 	TicketSimulator() 
 	{
-			
+		
 	}
 
 	//populates the queue with set of randomized tickets. the number of randomly generated
@@ -71,12 +71,15 @@ public:
 	//return empty string. *uses tickets toString method
 	string get_next()
 	{
-		Ticket<string> nextTicket;
+		Ticket<string> nextTicket;	
+
+		Queue::dequeue(nextTicket.toString());
 
 
+		cout << Queue::getSize();
 
-
-
+		return nextTicket;
+		
 
 	}
 
