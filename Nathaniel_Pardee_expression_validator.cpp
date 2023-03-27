@@ -21,13 +21,15 @@ int main()
 			string reason; 
 			TicketSimulator obj1;
 
+			obj1.populate_queue(20);
+
 
 			cout << "Name: " << std::endl;
 			cin >> name;
 			cout << "Reason: " << std::endl;
-			cin >> reason;
-
+			cin >> reason;			
 			obj1.add_ticket(name, reason);
+
 		}
 
 		if (userChoice == 2)

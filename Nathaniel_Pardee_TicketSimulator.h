@@ -25,6 +25,9 @@ public:
 	//calls load_names and load_reasons from text files into samples and sample reasons
 	TicketSimulator() 
 	{
+		load_names();
+		//load_reasons();
+
 		
 	}
 
@@ -33,14 +36,9 @@ public:
 	void populate_queue(int num_entries)
 	{
 		srand(num_entries);
-		sampleSize = num_entries;
-
-		
+		sampleSize = num_entries;		
 		string randName;
 		string randReason;
-
-		cout << "Enter how many tickets needed\n";
-		cin >> sampleSize;
 
 		//sets default sample size
 		if (sampleSize <= 0)
@@ -50,8 +48,14 @@ public:
 		
 		for (int i = 0; i < sampleSize; i++)
 		{
-			Ticket<string> ticket();
-		
+						
+			int j = rand();
+			randName = sample_names[j];
+			randReason = sample_reasons[j];
+
+			Ticket<string> ticket(randName, randReason);
+			Queue::enqueue(ticket.toString());
+			
 
 		}
 		
@@ -73,13 +77,13 @@ public:
 	{
 		Ticket<string> nextTicket;	
 
-		Queue::dequeue(nextTicket.toString());
+		//Queue::dequeue(nextTicket.toString());
 
 
-		cout << Queue::getSize();
+		//cout << Queue::getSize();
 
-		return nextTicket;
-		
+		//return nextTicket;
+		//
 
 	}
 
@@ -90,25 +94,27 @@ private:
 	{
 		std::ifstream input;
 		string name;
+		int i = 0; //keeps count of each line
 
 		input.open("names.txt");
 
 		if (!input.is_open())
 		{
-			cout << "names.txt not open" << std::endl;
-			
+			cout << "names.txt is not open" << std::endl;
+						
+		}
+		else
+		{
+			while (!input.eof())
+			{
+				getline(input, name);
+				sample_names.push_back(name);
+				cout << i++;
+			}
 		}
 
 		
-		while (getline(input, name))
-		{
-			
-			for (int i = 0; i != input.eof(); i++)
-			{
-				sample_names[i] = name;
-			}
-
-		}
+	
 	}
 
 	//opens the reasons.txt file and reads names into sample_reasons
@@ -118,22 +124,19 @@ private:
 		string reason;
 		
 
-		input.open("names.txt");
+		input.open("reasons.txt");
 
 		if (!input.is_open())
 		{
-			cout << "names.txt not open" << std::endl;
+			cout << "reasons.txt not open" << std::endl;
 
 		}
 
 
-		while (getline(input, reason))
+		while (!input.eof())
 		{
-
-			for (int i = 0; i < input.eof(); i++)
-			{
-				sample_reasons[i] = reason;
-			}
+			cout << "open";
+			getline(input, reason);
 
 		}
 	}
